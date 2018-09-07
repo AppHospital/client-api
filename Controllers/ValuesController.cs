@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace client_api.Controllers
+namespace AppHospital.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

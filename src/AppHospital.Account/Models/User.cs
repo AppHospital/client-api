@@ -5,8 +5,6 @@ namespace AppHospital.Account
 {
     public class User
     {
-        public User() : this("", "") { }
-
         public User(string firstname, string lastname, Group group = null)
         {
             Firstname = firstname ?? string.Empty;
@@ -23,5 +21,7 @@ namespace AppHospital.Account
         public string Lastname { get; }
 
         public ICollection<Group> Groups { get; } = new List<Group>();
+
+        public static User Empty => new User("", "");
     }
 }

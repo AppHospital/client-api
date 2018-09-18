@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AppHospital.Account\AppHospital.Account.csproj" />
+    <ProjectReference Include="..\AppHospital.AccountRepository\AppHospital.AccountRepository.csproj" />
   </ItemGroup>
 
 </Project>

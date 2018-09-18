@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using AppHospital.AccountRepository.Configuration;
 
 namespace AppHospital.Api
 {
@@ -27,6 +28,9 @@ namespace AppHospital.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerApi();
+
+            services.AddAccountRepository();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

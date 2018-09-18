@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,16 +15,21 @@ namespace AppHospital.Api.Controllers
     {
         private readonly ILogger<ValuesController> _logger;
 
-        public ValuesController(ILogger<ValuesController> logger)
+        private readonly SignInManager<Account.Models.Account> _signInManager;
+
+        public ValuesController(ILogger<ValuesController> logger, SignInManager<Account.Models.Account> signInManager)
         {
             _logger = logger;
+            _signInManager = signInManager;
         }
         // GET api/values
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Microsoft")]
         public ActionResult<IEnumerable<string>> Get()
         {
             _logger.LogError("test log");
-            return new string[] { "value1", "value2" };
+
+            return new string[] { "value1", "value2", User.Identity.Name };
         }
 
         // GET api/values/5

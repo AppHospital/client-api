@@ -11,7 +11,7 @@ namespace AppHospital.Account.Models
             Squad = squad ?? Squad.Empty;
         }
 
-        public string Firstname { get; }
+        public string Firstname { get; set; }
         
         public string Lastname { get; }
 

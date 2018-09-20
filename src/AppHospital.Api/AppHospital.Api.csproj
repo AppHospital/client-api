@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AppHospital.InMemoryStore\AppHospital.InMemoryStore.csproj" />
+    <ProjectReference Include="..\AppHospital.InMemoryStore\AppHospital.InMemoryStore.csproj" />
     <ProjectReference Include="..\AppHospital.Account\AppHospital.Account.csproj" />
   </ItemGroup>
 

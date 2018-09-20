@@ -1,4 +1,5 @@
 ﻿using AppHospital.Account;
+using AppHospital.Api.Accounts;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -16,9 +17,9 @@ namespace AppHospital.Api.Controllers
         }
 
         [HttpGet("{username}")]
-        public Task<Account.Models.Account> GetAccount(string username)
+        public async Task<UserAccount> GetAccountAsync(string username)
         {
-            return _accountStore.Find(username);
+            return UserAccount.From(await _accountStore.Find(username));
         }
     }
 }

@@ -4,6 +4,6 @@ namespace AppHospital.Account
 {
     public interface IAccountStore
     {
-        Task<Account.Models.Account> Find(string id);
+        Task<User> Find(string id);
     }
 }

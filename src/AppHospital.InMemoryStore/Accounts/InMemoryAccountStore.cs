@@ -6,12 +6,12 @@ namespace AppHospital.InMemoryStore.Accounts
 {
     internal class InMemoryAccountStore : IAccountStore
     {
-        private static readonly Dictionary<string, Account.Models.Account> ACCOUNTS = new Dictionary<string, Account.Models.Account>
+        private static readonly Dictionary<string, User> ACCOUNTS = new Dictionary<string, User>
         {
-            ["toto"] = new Account.Models.Account("toto", "cousin")
+            ["toto"] = new User("toto", "cousin")
         };
 
-        public Task<Account.Models.Account> Find(string id)
+        public Task<User> Find(string id)
         {
             return Task.FromResult(ACCOUNTS[id]);
         }

@@ -1,4 +1,5 @@
 ﻿using AppHospital.Account;
+using AppHospital.Api.Accounts;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +37,7 @@ namespace AppHospital.Api.Tests.Controllers
                 })
                 .CreateClient();
             _mockAccountStore.Setup(store => store.Find("toto"))
-                .ReturnsAsync(new Account.Models.Account("test", "lastname"));
+                .ReturnsAsync(new User("test", "lastname"));
 
             //When
             var response = await client.GetAsync("/api/user/toto");
@@ -45,7 +46,7 @@ namespace AppHospital.Api.Tests.Controllers
             response.EnsureSuccessStatusCode();
             var responseText = await response.Content.ReadAsStringAsync();
 
-            var account = JsonConvert.DeserializeObject<Account.Models.Account>(responseText);
+            var account = JsonConvert.DeserializeObject<UserAccount>(responseText);
             Assert.Equal("test", account.Firstname);
         }
     }

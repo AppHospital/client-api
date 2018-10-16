@@ -1,5 +1,6 @@
 .vscode
 .vs
+*.stackdump
 
 #Junk Files
 *.DS_Store

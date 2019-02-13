@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AppHospital.Api.Configuration;
 using AppHospital.InMemoryStore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,22 @@ namespace AppHospital.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options=>{
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.Authority = "provider end point";
+                options.Audience = "application id or uri as identifier";
+                options.TokenValidationParameters.ValidateLifetime = true;
+                options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(5);
+            });
+
+            services.AddAuthorization(options=>{
+                options.AddPolicy("AppHospital", policy => {
+                    policy.RequireRole("AppHospitalClient");
+                });
+            });
+
             services.AddSwaggerApi();
 
             services.AddInMemoryStore();
